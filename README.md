@@ -22,4 +22,23 @@ exiftool
 - add a -csv mode for bulk export: exiftool -csv ... > report.csv
 - option to strip metadata: Add a -clean flag that runs exiftool -all= -overwrite_original file
 - recurse with progress: Already recursive via find; add | pv if you install it.
+- colors?
+
+### ^M error quick fix
+For Windows, there's an issue is Windows line endings (^M). This happens when copying code from Windows or certain web pages. Here's a quick fix. Perhaps I'll fix it later.
+```bash
+# using dos2unix
+dos2unix imgmeta.sh
+chmod +x imgmeta.sh
+./imgmeta.sh
+```
+alternatives if you don't have dos2unix:
+```bash
+# Option 1: using sed
+sed -i 's/\r$//' imgmeta.sh
+```
+```bash
+# Option 2: using tr
+tr -d '\r' < imgmeta.sh > imgmeta.sh.tmp && mv imgmeta.sh.tmp imgmeta.sh
+```
 
